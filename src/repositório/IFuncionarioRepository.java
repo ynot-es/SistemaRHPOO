@@ -1,4 +1,4 @@
-package negócios;
+package repositório;
 
 public interface IFuncionarioRepository {
 	void salvar(Funcionario funcionario);
