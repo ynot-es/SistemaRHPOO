@@ -1,8 +1,14 @@
 package repositório;
 
+import java.util.List;
+import negócios.Funcionario;
+import negócios.Funcionario.StatusFuncionario;
+
 public interface IFuncionarioRepository {
-	void salvar(Funcionario funcionario);
-    Funcionario buscarPorMatricula(String matricula);
-    List<Funcionario> buscarPorDepartamento(Departamento depto);
-    List<Funcionario> buscarPorStatus(StatusFuncionario status);
+	public abstract void salvar(Funcionario funcionario); // Create
+    Funcionario buscarPorMatricula(String matricula); // Read
+//    void promocao(String matricula); // Update
+    void remover(String matricula); // Delete
+    public List<Funcionario> buscarPorDepartamento(String code); // Read
+    public List<Funcionario> buscarPorStatus(StatusFuncionario status); // Read
 }

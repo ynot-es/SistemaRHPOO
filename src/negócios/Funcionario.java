@@ -2,7 +2,13 @@ package negócios;
 
 import java.util.ArrayList;
 
+
+
 public class Funcionario extends Pessoa {
+	
+	public enum StatusFuncionario{
+		ativo, ferias, afastado;
+	}
 	
 	private String matricula;
     private Departamento departamento;
@@ -12,10 +18,11 @@ public class Funcionario extends Pessoa {
     private ArrayList<Beneficios> beneficios;
     private StatusFuncionario status; //Ativo, férias, afastado
 	
-    public Funcionario(String nome, String cpf, String email, Cargo cargo) {
+    public Funcionario(String nome, String cpf, String email, Cargo cargo, StatusFuncionario status) {
         super(nome, cpf, email);
         this.cargo = cargo;
         this.salarioBase = cargo.getSalarioBase(); 
+        this.status = status;
     }
     
     public Departamento getDepartamento() {
@@ -70,7 +77,7 @@ public class Funcionario extends Pessoa {
         this.salarioBase = salario;
     }
     
-    public void getStatus() {
+    public StatusFuncionario getStatus() {
         return this.status;
     }
     
