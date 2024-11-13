@@ -7,7 +7,7 @@ public class Funcionario extends Pessoa {
 	private String matricula;
     private Departamento departamento;
     private Cargo cargo;
-    private LocalDate dataAdmissao;
+    private Data dataAdmissao;
     private Double salarioBase;
     private ArrayList<Beneficios> beneficios;
     private StatusFuncionario status; //Ativo, férias, afastado
@@ -46,7 +46,7 @@ public class Funcionario extends Pessoa {
 		return matricula;
 	}
 
-	public LocalDate getDataAdmissao() {
+	public Data getDataAdmissao() {
 		return dataAdmissao;
 	}
 
