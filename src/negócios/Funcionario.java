@@ -2,12 +2,14 @@ package negócios;
 
 import java.util.ArrayList;
 
+import repositório.FuncionarioRepository;
+import repositório.IFuncionarioRepository;
 
 
 public class Funcionario extends Pessoa {
-	
+	IFuncionarioRepository funcRepositorio = new FuncionarioRepository();
 	public enum StatusFuncionario{
-		ativo, ferias, afastado;
+		ativo, ferias, afastado, desligado;
 	}
 	
 	private String matricula;
@@ -72,7 +74,9 @@ public class Funcionario extends Pessoa {
         return this.status;
     }
     
-    
+    public void pedirDemissao() {
+    	funcRepositorio.remover(this.matricula);
+    }
     
     @Override
     public String toString() {

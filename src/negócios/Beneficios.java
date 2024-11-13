@@ -1,6 +1,14 @@
 package negócios;
 
 public class Beneficios {
+	
+	public enum TipoBeneficio {
+	    VALE_REFEICAO,
+	    VALE_TRANSPORTE,
+	    PLANO_SAUDE,
+	    PLANO_DENTAL,
+	    AUXILIO_CRECHE
+	} 
 
 	private TipoBeneficio tipo;
 	private Double valor;

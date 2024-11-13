@@ -12,7 +12,6 @@ public class Pessoa {
 		this.email = email;
 	}
 	
-	
 	public void setEndereco(Endereco novoEndereco) {
 		this.endereco = novoEndereco;
 	}
