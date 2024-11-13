@@ -11,7 +11,6 @@ public class Funcionario extends Pessoa {
 	}
 	
 	private String matricula;
-    private Departamento departamento;
     private Cargo cargo;
     private Data dataAdmissao;
     private Double salarioBase;
@@ -20,18 +19,10 @@ public class Funcionario extends Pessoa {
 	
     public Funcionario(String nome, String cpf, String email, Cargo cargo, StatusFuncionario status) {
         super(nome, cpf, email);
-        this.cargo = cargo;
-        this.salarioBase = cargo.getSalarioBase(); 
+        this.cargo = cargo; 
+        this.salarioBase = cargo.getSalario(); 
         this.status = status;
     }
-    
-    public Departamento getDepartamento() {
-		return departamento;
-	}
-
-	public void setDepartamento(Departamento departamento) {
-		this.departamento = departamento;
-	}
 
 	public Double getSalarioBase() {
 		return salarioBase;

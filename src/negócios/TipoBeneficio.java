@@ -6,4 +6,4 @@ public enum TipoBeneficio {
     PLANO_SAUDE,
     PLANO_DENTAL,
     AUXILIO_CRECHE
-}
+}  
