@@ -1,5 +1,6 @@
 package negócios;
 
+//endereço
 public class Endereco {
 	private String logradouro;
 	private String numero;
