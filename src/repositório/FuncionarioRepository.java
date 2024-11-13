@@ -15,17 +15,17 @@ public class FuncionarioRepository implements IFuncionarioRepository{
 		 funcionarios.add(funcionario);
 	     System.out.println("Usuário cadastrado: " + funcionario.getNome());
 	}
-//
-//	@Override
-//	public void remover(String nome) {
-//		 User usuario = consultar(nome);
-//	        if (usuario != null) {
-//	            funcionarios.remove(usuario);
-//	            System.out.println("Usuário removido: " + usuario.getNome());
-//	        } else {
-//	            System.out.println("Usuário não existe.");
-//	        }
-//	}
+
+	@Override
+	public boolean remover(String matricula) {
+		 Funcionario usuario = buscarPorMatricula(matricula);
+	        if (usuario != null) {
+	            funcionarios.remove(usuario);
+	            return true;
+	        } else {
+	            return false;
+	        }
+	}
 
 //	@Override
 //	void promocao(String matricula) {
