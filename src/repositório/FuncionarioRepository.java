@@ -46,7 +46,7 @@ public class FuncionarioRepository implements IFuncionarioRepository{
 	public List<Funcionario> buscarPorDepartamento(String code){
 		List<Funcionario> FuncionariosPD = new ArrayList<>();
 		for (Funcionario usuario : funcionarios) {
-            if (usuario.getDepartamento().getCodigo() == code){
+            if (usuario.getCargo().getDepartamento().getCodigo() == code){
                 FuncionariosPD.add(usuario);
             }
         }
