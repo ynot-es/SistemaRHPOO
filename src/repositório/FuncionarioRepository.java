@@ -4,6 +4,7 @@ import negócios.Funcionario;
 import negócios.Funcionario.StatusFuncionario;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FuncionarioRepository implements IFuncionarioRepository{
@@ -11,26 +12,35 @@ public class FuncionarioRepository implements IFuncionarioRepository{
 	
 	@Override
 	public void salvar(Funcionario funcionario) {
-		 funcionarios.add(funcionario);
-	     System.out.println("Usuário cadastrado: " + funcionario.getNome());
+		funcionarios.add(funcionario);
 	}
 
 	@Override
 	public boolean remover(String matricula) {
-		 Funcionario usuario = buscarPorMatricula(matricula);
-	        if (usuario != null) {
-	            funcionarios.remove(usuario);
-	            usuario.setStatus(StatusFuncionario.desligado); 
-	            return true;
-	        } else {
-	            return false;
-	        }
+		Funcionario usuario = buscarPorMatricula(matricula);
+        if (usuario != null) {
+            funcionarios.remove(usuario);
+            return true;
+        } else {
+            return false;
+        }
 	}
 
-//	@Override
-//	void promocao(String matricula) {
-//		
-//	}
+	@Override
+	public boolean promover(String matricula) {
+		Funcionario usuario = buscarPorMatricula(matricula);
+        if (usuario != null) {
+        	if(usuario.getCargo().getPai() != null) {
+		        usuario.setCargo(usuario.getCargo().getPai());
+		        return true;
+        	}
+        	else {
+        		return false;
+        	}
+        } else {
+            return false;
+        }
+	}
 
 	@Override
 	public Funcionario buscarPorMatricula(String matricula){
