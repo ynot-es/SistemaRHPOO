@@ -74,8 +74,14 @@ public class FuncionarioRepository implements IFuncionarioRepository{
 		return FuncionariosPS;
 	}
 	
-//	@Override
-//	public List<User> lerTodos() {
-//		return new ArrayList<>(funcionarios);
-//	}
+	@Override
+	public List<Funcionario> buscarPorCargo(String nomeCargo) {
+		List<Funcionario> FuncionariosPS = new ArrayList<>();
+		for (Funcionario usuario : funcionarios) {
+            if (usuario.getCargo().getTitulo() == nomeCargo){
+                FuncionariosPS.add(usuario);
+            }
+        }
+		return FuncionariosPS;
+	}
 }

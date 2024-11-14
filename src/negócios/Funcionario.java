@@ -7,11 +7,11 @@ import java.util.ArrayList;
 public class Funcionario extends Pessoa {
 	
 	public enum StatusFuncionario{
-		ativo, ferias, afastado;
+		ativo, ferias, afastado, desligado;
 	}
 	
 	private String matricula;
-    private Cargo cargo;
+    private Object cargo;
     private Data dataAdmissao;
     private ArrayList<Beneficios> beneficios;
     private StatusFuncionario status; // ativo, férias, afastado, desligado
@@ -47,8 +47,8 @@ public class Funcionario extends Pessoa {
         return cargo;
     }
 
-    public void setCargo(Cargo cargo) {
-        this.cargo = cargo;
+    public void setCargo(Object object) {
+        this.cargo = object;
     }
 
     public StatusFuncionario getStatus() {
@@ -56,7 +56,7 @@ public class Funcionario extends Pessoa {
     }
     
     @Override
-    public String toString() {
-        return "Funcionario [nome:" + this.getNome() + ", cpf:" + this.getCpf() + ", cargo:" + this.getCargo()+", nome:" + this.getNome() + ", salario=" + this.getSalario() + "]";
+    public String toString() { 
+        return "Funcionario [nome:" + this.getNome() + ", cpf:" + this.getCpf() + ", cargo:" + this.getCargo()+", nome:" + this.getNome() + "]";
     }
 }

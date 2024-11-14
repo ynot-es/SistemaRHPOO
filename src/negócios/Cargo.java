@@ -52,5 +52,5 @@ public class Cargo {
 				"titulo=" + this.titulo + '\'' +
 				", salario=" + this.salario;
 	}
-	
+
 }
