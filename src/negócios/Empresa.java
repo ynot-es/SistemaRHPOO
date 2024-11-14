@@ -1,6 +1,19 @@
 package negócios;
 
+import java.util.List;
+
+import repositório.CargoRepository;
+import repositório.FuncionarioRepository;
+import repositório.ICargoRepository;
+import repositório.IFuncionarioRepository;
+
 public class Empresa {
+	
+	private IFuncionarioRepository fRepository = new FuncionarioRepository();
+	private ICargoRepository cRepository = new CargoRepository(); 
+	
+	private List<Funcionario> funcionarios = fRepository.getFuncionarios();
+	private List<Cargo> cargos = cRepository.getCargos();
 	private String nome;
 	private int n_funcionarios;
 	private int n_departamentos;
@@ -55,6 +68,22 @@ public class Empresa {
 
 	public Data getFundacao() {
 		return fundacao;
+	}
+
+	public List<Funcionario> getFuncionarios() {
+		return funcionarios;
+	}
+
+	public void setFuncionarios(List<Funcionario> funcionarios) {
+		this.funcionarios = funcionarios;
+	}
+
+	public List<Cargo> getCargos() {
+		return cargos;
+	}
+
+	public void setCargos(List<Cargo> cargos) {
+		this.cargos = cargos;
 	}
 	
 	

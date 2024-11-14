@@ -11,7 +11,7 @@ public class Funcionario extends Pessoa {
 	}
 	
 	private String matricula;
-    private Object cargo;
+    private Cargo cargo;
     private Data dataAdmissao;
     private ArrayList<Beneficios> beneficios;
     private StatusFuncionario status; // ativo, férias, afastado, desligado
@@ -47,8 +47,8 @@ public class Funcionario extends Pessoa {
         return cargo;
     }
 
-    public void setCargo(Object object) {
-        this.cargo = object;
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
     }
 
     public StatusFuncionario getStatus() {

@@ -4,7 +4,6 @@ import negócios.Funcionario;
 import negócios.Funcionario.StatusFuncionario;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class FuncionarioRepository implements IFuncionarioRepository{
@@ -53,6 +52,11 @@ public class FuncionarioRepository implements IFuncionarioRepository{
 	}
 	
 	@Override
+	public List<Funcionario> getFuncionarios() {
+		return funcionarios;
+	}
+	
+	@Override
 	public List<Funcionario> buscarPorDepartamento(String code){
 		List<Funcionario> FuncionariosPD = new ArrayList<>();
 		for (Funcionario usuario : funcionarios) {
@@ -84,4 +88,6 @@ public class FuncionarioRepository implements IFuncionarioRepository{
         }
 		return FuncionariosPS;
 	}
+	
+	
 }

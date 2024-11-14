@@ -57,4 +57,9 @@ public class CargoRepository implements ICargoRepository{
         }
         return null;
 	}
+	
+	@Override
+	public List<Cargo> getCargos() {
+		return cargos;
+	}
 }
