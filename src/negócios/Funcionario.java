@@ -57,6 +57,6 @@ public class Funcionario extends Pessoa {
     
     @Override
     public String toString() {
-        return "Funcionario [nome:" + this.getNome() + ", cpf:" + this.getCpf() + ", cargo:" + this.getCargo()+", nome:" + this.getNome() + ", salario=" + this.getSalario() + "]";
+        return "Funcionario [nome:" + this.getNome() + ", cpf:" + this.getCpf() + ", cargo:" + this.getCargo()+", nome:" + this.getNome()+"]";
     }
 }
