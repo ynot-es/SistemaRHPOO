@@ -2,37 +2,26 @@ package negócios;
 
 import java.util.ArrayList;
 
-import repositório.FuncionarioRepository;
-import repositório.IFuncionarioRepository;
 
 
 public class Funcionario extends Pessoa {
-	IFuncionarioRepository funcRepositorio = new FuncionarioRepository();
+	
 	public enum StatusFuncionario{
-		ativo, ferias, afastado, desligado;
+		ativo, ferias, afastado;
 	}
 	
 	private String matricula;
     private Cargo cargo;
     private Data dataAdmissao;
-    private Double salarioBase;
     private ArrayList<Beneficios> beneficios;
-    private StatusFuncionario status; //Ativo, férias, afastado
+    private StatusFuncionario status; // ativo, férias, afastado, desligado
 	
     public Funcionario(String nome, String cpf, String email, Cargo cargo, StatusFuncionario status) {
         super(nome, cpf, email);
         this.cargo = cargo; 
-        this.salarioBase = cargo.getSalario(); 
         this.status = status;
     }
 
-	public Double getSalarioBase() {
-		return salarioBase;
-	}
-
-	public void setSalarioBase(Double salarioBase) {
-		this.salarioBase = salarioBase;
-	}
 
 	public ArrayList<Beneficios> getBeneficios() {
 		return beneficios;
@@ -62,20 +51,8 @@ public class Funcionario extends Pessoa {
         this.cargo = cargo;
     }
 
-    public double getSalario() {
-        return salarioBase;
-    }
-
-    public void setSalario(double salario) {
-        this.salarioBase = salario;
-    }
-    
     public StatusFuncionario getStatus() {
         return this.status;
-    }
-    
-    public void pedirDemissao() {
-    	funcRepositorio.remover(this.matricula);
     }
     
     @Override

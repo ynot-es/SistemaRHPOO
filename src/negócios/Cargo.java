@@ -4,13 +4,13 @@ public class Cargo {
     private String titulo;          
     private double salario;
     private Departamento departamento;
+    private Cargo pai = null;
 
     public Cargo(String titulo, Double salario, Departamento departamento) {
         this.titulo = titulo;
         this.salario = salario;
         this.departamento = departamento;
     }
-
 
     public String getTitulo() {
         return titulo;
@@ -36,11 +36,21 @@ public class Cargo {
 		this.departamento = departamento;
 	}
 
-	@Override
-    public String toString() {
-        return "Cargo{" +
-                "titulo=" + this.titulo + '\'' +
-                ", salario=" + this.salario;
-    }
+	public Cargo getPai() {
+		return pai;
+	}
 
+
+	public void setPai(Cargo pai) {
+		this.pai = pai;
+	}
+
+	
+	@Override
+	public String toString() {
+		return "Cargo{" +
+				"titulo=" + this.titulo + '\'' +
+				", salario=" + this.salario;
+	}
+	
 }
