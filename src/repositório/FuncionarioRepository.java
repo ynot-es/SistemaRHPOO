@@ -4,7 +4,6 @@ import negócios.Funcionario;
 import negócios.Funcionario.StatusFuncionario;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class FuncionarioRepository implements IFuncionarioRepository{
@@ -21,6 +20,7 @@ public class FuncionarioRepository implements IFuncionarioRepository{
 		 Funcionario usuario = buscarPorMatricula(matricula);
 	        if (usuario != null) {
 	            funcionarios.remove(usuario);
+	            usuario.setStatus(StatusFuncionario.desligado); 
 	            return true;
 	        } else {
 	            return false;

@@ -19,6 +19,4 @@ public class Endereco {
         this.estado = estado;
         this.cep = cep;
     }
-    
-    
 }
