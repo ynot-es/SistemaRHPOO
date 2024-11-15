@@ -45,12 +45,11 @@ public class Cargo {
 		this.pai = pai;
 	}
 
-	
 	@Override
 	public String toString() {
-		return "Cargo{" +
-				"titulo=" + this.titulo + '\'' +
-				", salario=" + this.salario;
+		return "Cargo [titulo=" + titulo + ", salario=" + salario + "]";
 	}
+
+	
 
 }

@@ -1,5 +1,6 @@
 package negócios;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 
@@ -9,19 +10,19 @@ public class Funcionario extends Pessoa {
 	public enum StatusFuncionario{
 		ativo, ferias, afastado, desligado;
 	}
-	
+
 	private String matricula;
     private Cargo cargo;
-    private Data dataAdmissao;
+    private LocalDate dataAdmissao;
     private ArrayList<Beneficios> beneficios;
     private StatusFuncionario status; // ativo, férias, afastado, desligado
-	
-    public Funcionario(String nome, String cpf, String email, Cargo cargo, StatusFuncionario status) {
+
+    public Funcionario(String nome, String cpf, String matricula, String email, Cargo cargo, LocalDate dataAdmissao) {
         super(nome, cpf, email);
         this.cargo = cargo; 
-        this.status = status;
+        this.matricula = matricula;
+        this.dataAdmissao = dataAdmissao;
     }
-
 
 	public ArrayList<Beneficios> getBeneficios() {
 		return beneficios;
@@ -35,7 +36,7 @@ public class Funcionario extends Pessoa {
 		return matricula;
 	}
 
-	public Data getDataAdmissao() {
+	public LocalDate getDataAdmissao() {
 		return dataAdmissao;
 	}
 
@@ -54,9 +55,13 @@ public class Funcionario extends Pessoa {
     public StatusFuncionario getStatus() {
         return this.status;
     }
-    
-    @Override
-    public String toString() { 
-        return "Funcionario [nome:" + this.getNome() + ", cpf:" + this.getCpf() + ", cargo:" + this.getCargo()+", nome:" + this.getNome() + "]";
-    }
+
+	@Override
+	public String toString() {
+		return "Funcionario [matricula=" + matricula + ", cargo=" + cargo + ", dataAdmissao=" + dataAdmissao
+				+ ", beneficios=" + beneficios + ", status=" + status + ", nome=" + nome + ", cpf=" + cpf + ", email="
+				+ email + "]";
+	}
+
+
 }

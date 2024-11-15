@@ -1,5 +1,7 @@
 package negócios;
 
+import java.time.LocalDate;
+
 public class Beneficios {
 	
 	public enum TipoBeneficio {
@@ -12,10 +14,10 @@ public class Beneficios {
 
 	private TipoBeneficio tipo;
 	private Double valor;
-	private Data dataInicio;
-	private Data dataFim;
+	private LocalDate dataInicio;
+	private LocalDate dataFim;
 	
-	public Beneficios(TipoBeneficio tipo, double valor, Data dataInicio, Data dataFim) {	
+	public Beneficios(TipoBeneficio tipo, double valor, LocalDate dataInicio, LocalDate dataFim) {	
 		this.tipo = tipo;
 		this.valor = valor;
 		this.dataInicio = dataInicio;
@@ -38,19 +40,19 @@ public class Beneficios {
 		this.valor = valor;
 	}
 
-	public Data getDataInicio() {
+	public LocalDate getDataInicio() {
 		return dataInicio;
 	}
 
-	public void setDataInicio(Data dataInicio) {
+	public void setDataInicio(LocalDate dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 
-	public Data getDataFim() {
+	public LocalDate getDataFim() {
 		return dataFim;
 	}
 
-	public void setDataFim(Data dataFim) {
+	public void setDataFim(LocalDate dataFim) {
 		this.dataFim = dataFim;
 	}
 	

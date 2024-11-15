@@ -1,5 +1,6 @@
 package negócios;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import repositório.CargoRepository;
@@ -19,9 +20,9 @@ public class Empresa {
 	private int n_departamentos;
 	private int n_cargos;
 	private FolhaPagamento folhaPagamento;
-	private Data fundacao;
+	private LocalDate fundacao;
 	
-	public Empresa(String nome, int n_funcionarios, int n_cargos, int n_departamentos, FolhaPagamento folhaPagamento, Data fundacao) {
+	public Empresa(String nome, int n_funcionarios, int n_cargos, int n_departamentos, FolhaPagamento folhaPagamento, LocalDate fundacao) {
 		this.nome = nome;
 		this.n_funcionarios = n_funcionarios;
 		this.n_departamentos = n_departamentos;
@@ -66,7 +67,7 @@ public class Empresa {
 		return nome;
 	}
 
-	public Data getFundacao() {
+	public LocalDate getFundacao() {
 		return fundacao;
 	}
 
@@ -85,6 +86,7 @@ public class Empresa {
 	public void setCargos(List<Cargo> cargos) {
 		this.cargos = cargos;
 	}
+	
 	
 	
 }

@@ -1,11 +1,13 @@
 package negócios;
 
+import java.time.LocalDate;
+
 public class ContraCheque {
 	private Funcionario funcionario;
-	private Data dataEmissao;
+	private LocalDate dataEmissao;
 	private Double total;
 	
-	public ContraCheque(Funcionario funcionario, Data dataEmissao, double total){
+	public ContraCheque(Funcionario funcionario, LocalDate dataEmissao, double total){
 		this.funcionario = funcionario;
 		this.dataEmissao = dataEmissao;
 		this.total = total;
@@ -15,7 +17,7 @@ public class ContraCheque {
 		return funcionario;
 	}
 
-	public Data getDataEmissao() {
+	public LocalDate getDataEmissao() {
 		return dataEmissao;
 	}
 
