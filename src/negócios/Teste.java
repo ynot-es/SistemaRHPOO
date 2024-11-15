@@ -62,7 +62,13 @@ public class Teste {
                 	break;
                 case 3:
                 	matricula = scanner.next();
-                	fRepository.buscarPorMatricula(matricula);
+                	Funcionario user = fRepository.buscarPorMatricula(matricula);
+                	if(user != null) {
+                		System.out.println(user.nome);
+                	}
+                	else {
+                		System.out.println("Funcionário de matricula '" + matricula + "' não encontrado");
+                	}
                 	break;
                 case 4:
                     funcionarios = fRepository.getFuncionarios();

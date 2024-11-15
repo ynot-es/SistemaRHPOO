@@ -51,7 +51,7 @@ public class CargoRepository implements ICargoRepository{
 	@Override
 	public Cargo acessarCargo(String nome){
 		for (Cargo cargoAtual : cargos) {
-            if (cargoAtual.getTitulo() == nome) {
+            if (cargoAtual.getTitulo().equals(nome)) {
                 return cargoAtual;
             }
         }

@@ -10,7 +10,7 @@ public class ContraCheque {
 	public ContraCheque(Funcionario funcionario, LocalDate dataEmissao, double total){
 		this.funcionario = funcionario;
 		this.dataEmissao = dataEmissao;
-		this.total = total;
+		this.setTotal(total);
 	}
 
 	public Funcionario getFuncionario() {
@@ -24,6 +24,9 @@ public class ContraCheque {
 	public Double getTotal() {
 		return total;
 	}
-	
+
+	public void setTotal(Double total) {
+		this.total = total;
+	}
 	
 }

@@ -44,11 +44,12 @@ public class FuncionarioRepository implements IFuncionarioRepository{
 	@Override
 	public Funcionario buscarPorMatricula(String matricula){
 		 for (Funcionario usuario : funcionarios) {
-	            if (usuario.getMatricula() == matricula) {
-	                return usuario;
-	            }
-	        }
-	        return null;
+			 System.out.println(usuario.getMatricula() + " x " + matricula);
+			 if (usuario.getMatricula().equals(matricula)) {
+                return usuario;
+			 }
+		 }
+		 return null;
 	}
 	
 	@Override
@@ -60,7 +61,7 @@ public class FuncionarioRepository implements IFuncionarioRepository{
 	public List<Funcionario> buscarPorDepartamento(String code){
 		List<Funcionario> FuncionariosPD = new ArrayList<>();
 		for (Funcionario usuario : funcionarios) {
-            if (usuario.getCargo().getDepartamento().getCodigo() == code){
+            if (usuario.getCargo().getDepartamento().getCodigo().equals(code)){
                 FuncionariosPD.add(usuario);
             }
         }
@@ -82,7 +83,7 @@ public class FuncionarioRepository implements IFuncionarioRepository{
 	public List<Funcionario> buscarPorCargo(String nomeCargo) {
 		List<Funcionario> FuncionariosPS = new ArrayList<>();
 		for (Funcionario usuario : funcionarios) {
-            if (usuario.getCargo().getTitulo() == nomeCargo){
+            if (usuario.getCargo().getTitulo().equals(nomeCargo)){
                 FuncionariosPS.add(usuario);
             }
         }

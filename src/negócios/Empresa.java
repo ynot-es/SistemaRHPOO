@@ -15,19 +15,16 @@ public class Empresa {
 	
 	private List<Funcionario> funcionarios = fRepository.getFuncionarios();
 	private List<Cargo> cargos = cRepository.getCargos();
+	
 	private String nome;
 	private int n_funcionarios;
 	private int n_departamentos;
 	private int n_cargos;
-	private FolhaPagamento folhaPagamento;
+	private List<FolhaPagamento> folhasPagamento;
 	private LocalDate fundacao;
 	
-	public Empresa(String nome, int n_funcionarios, int n_cargos, int n_departamentos, FolhaPagamento folhaPagamento, LocalDate fundacao) {
+	public Empresa(String nome, LocalDate fundacao) {
 		this.nome = nome;
-		this.n_funcionarios = n_funcionarios;
-		this.n_departamentos = n_departamentos;
-		this.n_cargos = n_cargos;
-		this.folhaPagamento = folhaPagamento;
 		this.fundacao = fundacao;
 	}
 
@@ -35,32 +32,16 @@ public class Empresa {
 		return n_funcionarios;
 	}
 
-	public void setN_funcionarios(int n_funcionarios) {
-		this.n_funcionarios = n_funcionarios;
-	}
-
 	public int getN_departamentos() {
 		return n_departamentos;
 	}
-
-	public void setN_departamentos(int n_departamentos) {
-		this.n_departamentos = n_departamentos;
-	}
-
+	
 	public int getN_cargos() {
 		return n_cargos;
 	}
 
-	public void setN_cargos(int n_cargos) {
-		this.n_cargos = n_cargos;
-	}
-
-	public FolhaPagamento getFolhaPagamento() {
-		return folhaPagamento;
-	}
-
-	public void setFolhaPagamento(FolhaPagamento folhaPagamento) {
-		this.folhaPagamento = folhaPagamento;
+	public List<FolhaPagamento> getFolhaPagamento() {
+		return folhasPagamento;
 	}
 
 	public String getNome() {
@@ -75,18 +56,32 @@ public class Empresa {
 		return funcionarios;
 	}
 
-	public void setFuncionarios(List<Funcionario> funcionarios) {
-		this.funcionarios = funcionarios;
-	}
-
 	public List<Cargo> getCargos() {
 		return cargos;
 	}
-
-	public void setCargos(List<Cargo> cargos) {
-		this.cargos = cargos;
+	
+	public void pagarFuncionarios(int mes, int ano) { // DEIXAR MAIS COMPLEXO DEPOIS.
+		double valor = 0;
+		for (Cargo cargoAtual : cargos) {			
+			valor += cargoAtual.getSalario() + fRepository.buscarPorCargo(cargoAtual.getTitulo()).size();
+		}
+		FolhaPagamento folhaPagamento = new FolhaPagamento(mes, ano, null, valor);
+		folhasPagamento.add(folhaPagamento);
 	}
 	
+	public void cadastrarCargo(Cargo novoCargo) {
+		cRepository.adicionarCargo(novoCargo);
+		n_cargos += 1;
+	}
 	
+	public void cadastrarFuncionario(Funcionario novoFuncionario) {
+		fRepository.salvar(novoFuncionario);
+		n_funcionarios += 1;
+	}
 	
+	public boolean removerCargo(String nome){
+		n_cargos -= 1;
+		return cRepository.removerCargo(nome);
+
+	}
 }
