@@ -30,5 +30,13 @@ public class FolhaPagamento {
 	public Double getTotalGasto() {
 		return totalGasto;
 	}
+
+	@Override
+	public String toString() {
+		return "FolhaPagamento [mes=" + mes + ", ano=" + ano + ", contraCheques=" + contraCheques + ", totalGasto="
+				+ totalGasto + "]";
+	}
+	
+	
 	
 }
