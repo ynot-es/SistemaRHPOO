@@ -2,6 +2,8 @@ package negócios;
 
 import java.util.List;
 
+import excecoes.ValorIncompativelException;
+
 public class FolhaPagamento {
 	private int mes;
 	private int ano;
@@ -31,6 +33,15 @@ public class FolhaPagamento {
 		return totalGasto;
 	}
 
+	public void IncrementarValor(double valor) throws ValorIncompativelException {
+		if(valor > 0) {
+			totalGasto += valor;
+		}
+		else {
+			throw new ValorIncompativelException(valor);
+		}
+	}
+	
 	@Override
 	public String toString() {
 		return "FolhaPagamento [mes=" + mes + ", ano=" + ano + ", contraCheques=" + contraCheques + ", totalGasto="
