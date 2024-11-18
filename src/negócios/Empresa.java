@@ -6,27 +6,26 @@ import java.util.List;
 import excecoes.ChaveDuplicadaException;
 import excecoes.ElementoInexistenteException;
 import excecoes.LimitePromocoes;
-import excecoes.SalarioBaixoException;
 import excecoes.ValorIncompativelException;
 import repositório.CargoRepository;
 import repositório.DepartamentoRepository;
-import repositório.FuncionarioRepository;
+import repositório.GerenciadoRepository;
 import repositório.ICargoRepository;
 import repositório.IDepartamentoRepository;
-import repositório.IFuncionarioRepository;
+import repositório.IGerenciadoRepository;
 
 public class Empresa {
 	
-	private IFuncionarioRepository fRepository = new FuncionarioRepository();
+	private IGerenciadoRepository fRepository = new GerenciadoRepository();
 	private ICargoRepository cRepository = new CargoRepository(); 
 	private IDepartamentoRepository dRepository = new DepartamentoRepository();
 	
-	private List<Funcionario> funcionarios = fRepository.getFuncionarios();
+	private List<Gerenciado> Gerenciados = fRepository.getGerenciados();
 	private List<Cargo> cargos = cRepository.getCargos();
 	private List<Departamento> departamentos = dRepository.getDepartamentos();
 	
 	private String nome;
-	private int n_funcionarios;
+	private int n_Gerenciados;
 	private int n_departamentos;
 	private int n_cargos;
 	private List<FolhaPagamento> folhasPagamento;
@@ -36,9 +35,9 @@ public class Empresa {
 		this.nome = nome;
 		this.fundacao = fundacao;
 	}
-
-	public int getN_funcionarios() {
-		return n_funcionarios;
+	
+	public int getN_Gerenciados() {
+		return n_Gerenciados;
 	}
 
 	public int getN_departamentos() {
@@ -61,8 +60,8 @@ public class Empresa {
 		return fundacao;
 	}
 
-	public List<Funcionario> getFuncionarios() {
-		return funcionarios;
+	public List<Gerenciado> getGerenciados() {
+		return Gerenciados;
 	}
 
 	public List<Cargo> getCargos() {
@@ -73,7 +72,7 @@ public class Empresa {
 		return departamentos;
 	}
 	
-	public void pagarFuncionarios(int mes, int ano, Cargo cargoAtual) throws ElementoInexistenteException, ValorIncompativelException { // DEIXAR MAIS COMPLEXO DEPOIS.
+	public void pagarGerenciados(int mes, int ano, Cargo cargoAtual) throws ElementoInexistenteException, ValorIncompativelException { // DEIXAR MAIS COMPLEXO DEPOIS.
 		double valor = cargoAtual.getSalario() + fRepository.buscarPorCargo(cargoAtual.getTitulo()).size();
 		for (FolhaPagamento fp : folhasPagamento) {
 			if(fp.getAno() == ano) {
@@ -91,11 +90,6 @@ public class Empresa {
 		n_cargos += 1;
 	}
 	
-	public void cadastrarFuncionario(Funcionario novoFuncionario) throws ChaveDuplicadaException {
-		fRepository.adicionar(novoFuncionario);
-		n_funcionarios += 1;
-	}
-	
 	public void cadastrarDepartamento(Departamento novoDepartamento) throws ChaveDuplicadaException {
 		dRepository.adicionar(novoDepartamento);
 		n_departamentos += 1;
@@ -106,7 +100,7 @@ public class Empresa {
 		cRepository.remover(nome);
 	}
 	
-	public void removerFuncionario(String matricula) throws ElementoInexistenteException{
+	public void removerGerenciado(String matricula) throws ElementoInexistenteException{
 		n_cargos -= 1;
 		fRepository.remover(matricula);
 	}
@@ -124,11 +118,11 @@ public class Empresa {
 		cRepository.trocaDeDepartamento(nome, novoDepartamento);
 	}
 	
-	void trocarGestor(String code, Funcionario novoGestor) throws ElementoInexistenteException{
+	void trocarGestor(String code, Gerenciado novoGestor) throws ElementoInexistenteException{
 		dRepository.trocaDeGestor(code, novoGestor);
 	}
 	
-    void promoverFuncionario(String matricula) throws ElementoInexistenteException, LimitePromocoes{
+    void promoverGerenciado(String matricula) throws ElementoInexistenteException, LimitePromocoes{
     	fRepository.promover(matricula);
     }
     
@@ -136,11 +130,11 @@ public class Empresa {
     	cRepository.acessar(nome);
     }
 	
-    void acessarFuncionario(String matricula) throws ElementoInexistenteException {
-    	fRepository.buscarPorMatricula(matricula);
-    }
-    
+
     void acessarDepartamento(String code) throws ElementoInexistenteException {
     	dRepository.acessar(code);
     }
+    
+    
+    
 }

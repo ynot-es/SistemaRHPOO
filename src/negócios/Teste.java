@@ -28,6 +28,7 @@ public class Teste {
         Departamento departamento;
         boolean verifica;
         Funcionario funcionario;
+        
         List<Funcionario> auxiliarFunc;
         List<FolhaPagamento> auxiliarFolha;
         

@@ -1,67 +1,61 @@
 package negócios;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
+import excecoes.ChaveDuplicadaException;
 
+public abstract class Funcionario extends Pessoa{
 
-public class Funcionario extends Pessoa {
-	
 	public enum StatusFuncionario{
-		ativo, ferias, afastado, desligado;
+		ativo, ferias, afastado;
 	}
 
 	private String matricula;
     private Cargo cargo;
     private LocalDate dataAdmissao;
-    private ArrayList<Beneficios> beneficios;
-    private StatusFuncionario status; // ativo, férias, afastado, desligado
 
-    public Funcionario(String nome, String cpf, String matricula, String email, Cargo cargo, LocalDate dataAdmissao) {
-        super(nome, cpf, email);
-        this.cargo = cargo; 
-        this.matricula = matricula;
-        this.dataAdmissao = dataAdmissao;
-    }
-
-	public ArrayList<Beneficios> getBeneficios() {
-		return beneficios;
+	private StatusFuncionario status; // ativo, férias, afastado
+    
+    public Funcionario(String nome, String cpf, String email, String matricula, Cargo cargo, LocalDate dataAdmissao, StatusFuncionario status) {
+		super(nome, cpf, email);
+		this.setCargo(cargo);
+		this.matricula = matricula;
+		this.dataAdmissao = dataAdmissao;
+		this.status = status;
 	}
-
-	public void setBeneficios(ArrayList<Beneficios> beneficios) {
-		this.beneficios = beneficios;
-	}
+    
+	public abstract void pedirDemissao() throws ChaveDuplicadaException;
+    
+    public abstract void pedirAfastamento(int dias) throws ChaveDuplicadaException;
 
 	public String getMatricula() {
 		return matricula;
 	}
 
+	public Cargo getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(Cargo cargo) {
+		this.cargo = cargo;
+	}
+
 	public LocalDate getDataAdmissao() {
 		return dataAdmissao;
+	}
+	
+    public StatusFuncionario getStatus() {
+		return status;
 	}
 
 	public void setStatus(StatusFuncionario status) {
 		this.status = status;
 	}
-
-	public Cargo getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(Cargo cargo) {
-        this.cargo = cargo;
-    }
-
-    public StatusFuncionario getStatus() {
-        return this.status;
-    }
-
+	
 	@Override
 	public String toString() {
-		return "Funcionario [matricula=" + matricula + ", cargo=" + cargo + ", dataAdmissao=" + dataAdmissao
-				+ ", beneficios=" + beneficios + ", status=" + status + ", nome=" + nome + ", cpf=" + cpf + ", email="
+		return "Funcionario [matricula=" + getMatricula() + ", cargo=" + getCargo() + ", dataAdmissao=" + getDataAdmissao()
+				+ ", status=" + status + ", nome=" + nome + ", cpf=" + cpf + ", email="
 				+ email + "]";
 	}
-
-
 }

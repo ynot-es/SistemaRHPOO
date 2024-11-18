@@ -5,24 +5,24 @@ import java.util.ArrayList;
 public class Departamento {
 	private String nome;
 	private String codigo;
-	private Funcionario gestor;
+	private Gerente gerente;
 	private ArrayList<Funcionario> funcionarios;
 	private Double orcamento;
 	
-	public Departamento(String nome, String codigo, Funcionario gestor, ArrayList<Funcionario> funcionarios, Double orcamento) {
+	public Departamento(String nome, String codigo, Gerente gerente, ArrayList<Funcionario> funcionarios, Double orcamento) {
 		this.nome = nome;
 		this.codigo = codigo;
-		this.gestor = gestor;
+		this.gerente = gerente;
 		this.funcionarios = funcionarios;
 		this.orcamento = orcamento;
 	}
 
-	public Funcionario getGestor() {
-		return gestor;
+	public Gerente getGestor() {
+		return gerente;
 	}
 
-	public void setGestor(Funcionario gestor) {
-		this.gestor = gestor;
+	public void setGestor(Gerente gerente) {
+		this.gerente = gerente;
 	}
 
 	public Double getOrcamento() {

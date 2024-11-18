@@ -6,7 +6,7 @@ import java.util.List;
 import excecoes.ChaveDuplicadaException;
 import excecoes.ElementoInexistenteException;
 import negócios.Departamento;
-import negócios.Funcionario;
+import negócios.Gerente;
 
 public class DepartamentoRepository implements IDepartamentoRepository{
 	
@@ -30,7 +30,7 @@ public class DepartamentoRepository implements IDepartamentoRepository{
 	}
 	
 	@Override
-	public void trocaDeGestor(String code, Funcionario novoGestor) throws ElementoInexistenteException{
+	public void trocaDeGestor(String code, Gerente novoGestor) throws ElementoInexistenteException{
 		Departamento departamentoAtual = acessar(code);
         departamentoAtual.setGestor(novoGestor);
 	}
