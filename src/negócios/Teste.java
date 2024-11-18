@@ -141,7 +141,7 @@ public class Teste {
                 	ano = scanner.nextInt();
                 	empresa.pagarFuncionarios(mes, ano);
                 	
-                	//como eu verifico se foi pago com sucesso?
+                	// como eu verifico se foi pago com sucesso?
                 	
                 case 8:
                 	auxiliarFolha = empresa.getFolhaPagamento();

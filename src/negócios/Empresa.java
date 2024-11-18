@@ -3,18 +3,24 @@ package negócios;
 import java.time.LocalDate;
 import java.util.List;
 
+import excecoes.ChaveDuplicadaException;
+import excecoes.ElementoInexistenteException;
 import repositório.CargoRepository;
+import repositório.DepartamentoRepository;
 import repositório.FuncionarioRepository;
 import repositório.ICargoRepository;
+import repositório.IDepartamentoRepository;
 import repositório.IFuncionarioRepository;
 
 public class Empresa {
 	
 	private IFuncionarioRepository fRepository = new FuncionarioRepository();
 	private ICargoRepository cRepository = new CargoRepository(); 
+	private IDepartamentoRepository dRepository = new DepartamentoRepository();
 	
 	private List<Funcionario> funcionarios = fRepository.getFuncionarios();
 	private List<Cargo> cargos = cRepository.getCargos();
+	private List<Departamento> departamentos = dRepository.getDepartamentos();
 	
 	private String nome;
 	private int n_funcionarios;
@@ -60,7 +66,11 @@ public class Empresa {
 		return cargos;
 	}
 	
-	public void pagarFuncionarios(int mes, int ano) { // DEIXAR MAIS COMPLEXO DEPOIS.
+	public List<Departamento> getDepartamentos() {
+		return departamentos;
+	}
+	
+	public void pagarFuncionarios(int mes, int ano) throws ElementoInexistenteException { // DEIXAR MAIS COMPLEXO DEPOIS.
 		double valor = 0;
 		for (Cargo cargoAtual : cargos) {			
 			valor += cargoAtual.getSalario() + fRepository.buscarPorCargo(cargoAtual.getTitulo()).size();
@@ -69,19 +79,34 @@ public class Empresa {
 		folhasPagamento.add(folhaPagamento);
 	}
 	
-	public void cadastrarCargo(Cargo novoCargo) {
-		cRepository.adicionarCargo(novoCargo);
+	public void cadastrarCargo(Cargo novoCargo) throws ChaveDuplicadaException {
+		cRepository.adicionar(novoCargo);
 		n_cargos += 1;
 	}
 	
-	public void cadastrarFuncionario(Funcionario novoFuncionario) {
-		fRepository.salvar(novoFuncionario);
+	public void cadastrarFuncionario(Funcionario novoFuncionario) throws ChaveDuplicadaException {
+		fRepository.adicionar(novoFuncionario);
 		n_funcionarios += 1;
 	}
 	
-	public boolean removerCargo(String nome){
-		n_cargos -= 1;
-		return cRepository.removerCargo(nome);
-
+	public void cadastrarDepartamento(Departamento novoDepartamento) throws ChaveDuplicadaException {
+		dRepository.adicionar(novoDepartamento);
+		n_departamentos += 1;
 	}
+	
+	public void removerCargo(String nome) throws ElementoInexistenteException{
+		n_cargos -= 1;
+		cRepository.remover(nome);
+	}
+	
+	public void removerFuncionario(String nome) throws ElementoInexistenteException{
+		n_cargos -= 1;
+		fRepository.remover(nome);
+	}
+
+	public void removerDepartamento(String nome) throws ElementoInexistenteException{
+		n_cargos -= 1;
+		dRepository.remover(nome);
+	}
+	
 }
