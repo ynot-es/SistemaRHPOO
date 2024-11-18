@@ -5,6 +5,9 @@ import java.util.List;
 
 import excecoes.ChaveDuplicadaException;
 import excecoes.ElementoInexistenteException;
+import excecoes.LimitePromocoes;
+import excecoes.SalarioBaixoException;
+import excecoes.ValorIncompativelException;
 import repositório.CargoRepository;
 import repositório.DepartamentoRepository;
 import repositório.FuncionarioRepository;
@@ -70,12 +73,15 @@ public class Empresa {
 		return departamentos;
 	}
 	
-	public void pagarFuncionarios(int mes, int ano) throws ElementoInexistenteException { // DEIXAR MAIS COMPLEXO DEPOIS.
-		p
-		double valor = 0;
-		for (Cargo cargoAtual : cargos) {			
-			valor += cargoAtual.getSalario() + fRepository.buscarPorCargo(cargoAtual.getTitulo()).size();
-		}
+	public void pagarFuncionarios(int mes, int ano, Cargo cargoAtual) throws ElementoInexistenteException, ValorIncompativelException { // DEIXAR MAIS COMPLEXO DEPOIS.
+		double valor = cargoAtual.getSalario() + fRepository.buscarPorCargo(cargoAtual.getTitulo()).size();
+		for (FolhaPagamento fp : folhasPagamento) {
+			if(fp.getAno() == ano) {
+				if (fp.getMes() == mes) {
+					fp.IncrementarValor(valor);
+				}
+			}
+		}	
 		FolhaPagamento folhaPagamento = new FolhaPagamento(mes, ano, null, valor);
 		folhasPagamento.add(folhaPagamento);
 	}
@@ -100,14 +106,41 @@ public class Empresa {
 		cRepository.remover(nome);
 	}
 	
-	public void removerFuncionario(String nome) throws ElementoInexistenteException{
+	public void removerFuncionario(String matricula) throws ElementoInexistenteException{
 		n_cargos -= 1;
-		fRepository.remover(nome);
+		fRepository.remover(matricula);
 	}
 
-	public void removerDepartamento(String nome) throws ElementoInexistenteException{
+	public void removerDepartamento(String code) throws ElementoInexistenteException{
 		n_cargos -= 1;
-		dRepository.remover(nome);
+		dRepository.remover(code);
 	}
 	
+	public void reajusteSalarial(String matricula, double novoSalario) throws ValorIncompativelException, ElementoInexistenteException {
+		cRepository.reajusteSalarial(matricula, novoSalario);
+	}
+	
+	public void trocaDeDepartamento (String nome, Departamento novoDepartamento) throws ElementoInexistenteException{
+		cRepository.trocaDeDepartamento(nome, novoDepartamento);
+	}
+	
+	void trocarGestor(String code, Funcionario novoGestor) throws ElementoInexistenteException{
+		dRepository.trocaDeGestor(code, novoGestor);
+	}
+	
+    void promoverFuncionario(String matricula) throws ElementoInexistenteException, LimitePromocoes{
+    	fRepository.promover(matricula);
+    }
+    
+    void acessarCargo(String nome) throws ElementoInexistenteException {
+    	cRepository.acessar(nome);
+    }
+	
+    void acessarFuncionario(String matricula) throws ElementoInexistenteException {
+    	fRepository.buscarPorMatricula(matricula);
+    }
+    
+    void acessarDepartamento(String code) throws ElementoInexistenteException {
+    	dRepository.acessar(code);
+    }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 
 import excecoes.ChaveDuplicadaException;
 import excecoes.ElementoInexistenteException;
-import excecoes.SalarioBaixoException;
+import excecoes.ValorIncompativelException;
 import negócios.Cargo;
 import negócios.Departamento;
 
@@ -31,9 +31,9 @@ public class CargoRepository implements ICargoRepository{
 	}
 
 	@Override
-	public void reajusteSalarial(String nome, double novoSalario) throws SalarioBaixoException, ElementoInexistenteException{
+	public void reajusteSalarial(String nome, double novoSalario) throws ValorIncompativelException, ElementoInexistenteException{
 		Cargo cargoAtual = acessar(nome);
-		if (novoSalario < 1412) throw new SalarioBaixoException(novoSalario);
+		if (novoSalario < 1412) throw new ValorIncompativelException(novoSalario);
 		cargoAtual.setSalario(novoSalario);
 	}
 	
