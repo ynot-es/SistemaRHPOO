@@ -71,6 +71,7 @@ public class Empresa {
 	}
 	
 	public void pagarFuncionarios(int mes, int ano) throws ElementoInexistenteException { // DEIXAR MAIS COMPLEXO DEPOIS.
+		p
 		double valor = 0;
 		for (Cargo cargoAtual : cargos) {			
 			valor += cargoAtual.getSalario() + fRepository.buscarPorCargo(cargoAtual.getTitulo()).size();
