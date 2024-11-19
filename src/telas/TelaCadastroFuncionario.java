@@ -15,10 +15,10 @@ public class TelaCadastroFuncionario {
 	private Empresa empresa;
 	private Gerente gerente;
 	
-	public TelaCadastroFuncionario(Empresa empresa, Gerente gerente) {
+	public TelaCadastroFuncionario(Empresa empresa, Gerente gerente, Scanner scanner) {
 		this.empresa = empresa;
 		this.gerente = gerente;
-		scanner = new Scanner(System.in);
+		this.scanner = scanner;
 		data = LocalDate.now();
 	}
 	
@@ -45,27 +45,27 @@ public class TelaCadastroFuncionario {
 	
 	public String solicitarNome() {
 		System.out.println("Digite o nome:");
-		return scanner.next();
+		return scanner.nextLine();
 	}
 	
 	public String solicitarCpf() {
 		System.out.println("Digite o CPF:");
-		return scanner.next();
+		return scanner.nextLine();
 	}
 	
 	public String solicitarEmail() {
 		System.out.println("Digite o email:");
-		return scanner.next();
+		return scanner.nextLine();
 	}
 	
 	public String solicitarMatricula() {
 		System.out.println("Digite a matrícula:");
-		return scanner.next();
+		return scanner.nextLine();
 	}
 	
 	public String solicitarTitulo() {
 		System.out.println("Digite o título do cargo:");
-		return scanner.next();
+		return scanner.nextLine();
 	}
 		
 }

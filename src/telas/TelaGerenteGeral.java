@@ -12,13 +12,13 @@ import negócios.Funcionario;
 import negócios.Gerente;
 
 public class TelaGerenteGeral {
-	private Empresa empresa;
-	private Scanner scanner;
+    private Empresa empresa;
+    private Scanner scanner;
 
-	public TelaGerenteGeral(Empresa empresa) {
-		scanner = new Scanner(System.in);
-		this.empresa = empresa;
-	}
+    public TelaGerenteGeral(Empresa empresa, Scanner scanner) {
+        this.empresa = empresa;
+        this.scanner = scanner;
+    }
 	
 	public void mostrarOpcoes(Empresa gerenteGeral, TelaInicial telaInicial) {
 		String operacao = "N";
@@ -57,13 +57,13 @@ public class TelaGerenteGeral {
 	private void cadastrarCargo() {
 		System.out.println("----Cadastro de Cargo----");
 		System.out.println("Digite o título:");
-		String titulo = scanner.next();
+		String titulo = scanner.nextLine();
 		System.out.println("Digite o salário:");
 		double salario = scanner.nextDouble();
 		System.out.println("Digite o departamento onde ele atua:");
-		String departamento = scanner.next();
+		String departamento = scanner.nextLine();
 		System.out.println("Digite o cargo superior a ele (se houver)");
-		String nomeCargo = scanner.next();
+		String nomeCargo = scanner.nextLine();
 		try {
 			Cargo cargo = empresa.acessarCargo(nomeCargo);
 			try {
@@ -87,7 +87,7 @@ public class TelaGerenteGeral {
 	private void removerCargo() {
 		System.out.println("----Remoção de Cargo----");
 		System.out.println("Digite o título:");
-		String titulo = scanner.next();
+		String titulo = scanner.nextLine();
 		try {
 			empresa.removerCargo(titulo);
 			System.out.println("Feito com sucesso...");
@@ -108,11 +108,11 @@ public class TelaGerenteGeral {
 	private void criarDepartamento() {
 		System.out.println("----Cadastro de Departamento----");
 		System.out.println("Digite o nome:");
-		String nome = scanner.next();
+		String nome = scanner.nextLine();
 		System.out.println("Digite o codigo:");
-		String codigo = scanner.next();
+		String codigo = scanner.nextLine();
 		System.out.println("Digite a matricula do gerente:");
-		String gerente = scanner.next();
+		String gerente = scanner.nextLine();
 		try {
 			empresa.cadastrarDepartamento(nome, codigo, empresa.buscarGerente(gerente));
 			System.out.println("Feito com sucesso...");
@@ -124,7 +124,7 @@ public class TelaGerenteGeral {
 	private void removerDepartamento() {
 		System.out.println("----Remoção de Departamentos----");
 		System.out.println("Digite o título:");
-		String code = scanner.next();
+		String code = scanner.nextLine();
 		try {
 			empresa.removerDepartamento(code);
 			System.out.println("Feito com sucesso...");
@@ -144,13 +144,13 @@ public class TelaGerenteGeral {
 	private void cadastrarGerente() {
 		System.out.println("----Cadastro de Gerente----");
 		System.out.println("Digite o nome:");
-		String nome = scanner.next();
+		String nome = scanner.nextLine();
 		System.out.println("Digite o cpf:");
-		String cpf = scanner.next();
+		String cpf = scanner.nextLine();
 		System.out.println("Digite o email:");
-		String email = scanner.next();
+		String email = scanner.nextLine();
 		System.out.println("Digite a matricula:");
-		String matricula = scanner.next();
+		String matricula = scanner.nextLine();
 		try {
 			empresa.cadastrarGerente(nome, cpf, email, matricula, null);
 			System.out.println("Feito com sucesso...");
@@ -161,7 +161,7 @@ public class TelaGerenteGeral {
 	private void removerGerente() {
 		System.out.println("----Remoção de Gerente----");
 		System.out.println("Digite o título:");
-		String matricula = scanner.next();
+		String matricula = scanner.nextLine();
 		try {
 			empresa.demitirGerente(matricula);
 			System.out.println("Feito com sucesso...");

@@ -17,7 +17,7 @@ public class TelaInicial {
 			scanner = new Scanner(System.in);
 			telaLoginGerente = new TelaLoginGerente(empresa);
 			telaLoginFuncionario = new TelaLoginFuncionario(empresa);
-			telaDono = new TelaGerenteGeral(empresa);
+			telaDono = new TelaGerenteGeral(empresa, scanner);
 		}
 
 		public void iniciar() {
@@ -33,7 +33,7 @@ public class TelaInicial {
 				case "2" : telaLoginFuncionario.Login(this); break;
 				case "3" : telaDono.mostrarOpcoes(empresa, this); break;
 				case "s" :
-				case "S": System.exit(0); break;
+				case "S": scanner.close(); System.exit(0); break;
 				default:
 					throw new IllegalArgumentException("Valor inesperado: " + operacao);
 				}

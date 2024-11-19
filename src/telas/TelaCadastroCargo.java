@@ -37,7 +37,7 @@ public class TelaCadastroCargo {
 	
 	public String solicitarTitulo() {
 		System.out.println("Digite o titulo do cargo:");
-		return scanner.next();
+		return scanner.nextLine();
 	}
 	
 	public double solicitarSalario() {
@@ -47,7 +47,7 @@ public class TelaCadastroCargo {
 	
 	public String solicitarCodigo() {
 		System.out.println("Digite o código do cargo:");
-		return scanner.next();
+		return scanner.nextLine();
 	}
 	
 }

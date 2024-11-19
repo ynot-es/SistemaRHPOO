@@ -39,17 +39,17 @@ public class TelaCadastroDepartamento {
 	
 	public String solicitarNome() {
 		System.out.println("Digite o nome do departamento:");
-		return scanner.next();
+		return scanner.nextLine();
 	}
 	
 	public String solicitarCodigo() {
 		System.out.println("Digite o código:");
-		return scanner.next();
+		return scanner.nextLine();
 	}
 	
 	public String solicitarGerente() {
 		System.out.println("Digite a matricula do gerente: ");
-		return scanner.next();
+		return scanner.nextLine();
 	}
 	
 		

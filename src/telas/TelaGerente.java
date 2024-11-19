@@ -15,10 +15,10 @@ public class TelaGerente {
 	private TelaCadastroDepartamento telaCadastroDepartamento;
 	private Gerente gerente;
 	
-	public TelaGerente(Gerente gerente, Empresa empresa) {
-		scanner = new Scanner(System.in);
+	public TelaGerente(Gerente gerente, Empresa empresa, Scanner scanner) {
+		this.scanner = scanner;
 		this.gerente = gerente;
-		this.telaCadastroFuncionario = new TelaCadastroFuncionario(empresa, null);
+		this.telaCadastroFuncionario = new TelaCadastroFuncionario(empresa, null, scanner);
 		this.telaCadastroCargo = new TelaCadastroCargo(empresa);
 		this.telaCadastroDepartamento = new TelaCadastroDepartamento(empresa);
 	}

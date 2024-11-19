@@ -33,7 +33,7 @@ public class TelaBuscaMatricula {
 
 	public String solicitarMatricula() {
 		System.out.println("Digite a matrícula:");
-		return scanner.next();
+		return scanner.nextLine();
 	}
 
 }

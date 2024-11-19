@@ -23,7 +23,7 @@ public class TelaLoginFuncionario {
 		
 		System.out.println("-----Digite sua Matrícula-----");
 		String matricula;
-		matricula = scanner.next();
+		matricula = scanner.nextLine();
 		boolean erro = false;
 			try {
 				gerenciado = empresa.buscarGerenciado(matricula);

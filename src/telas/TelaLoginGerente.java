@@ -20,16 +20,17 @@ public class TelaLoginGerente {
 	public void Login(TelaInicial telaInicial) {
 			System.out.println("-----Digite sua Matrícula-----");
 			String matricula;
-			matricula = scanner.next();
+			matricula = scanner.nextLine();
 			Gerente gerente = null;
-		
 			try {
 				gerente = empresa.buscarGerente(matricula);
+				telaGerente.mostrarOpcoes(gerente, telaInicial);
 			}catch (ElementoInexistenteException e) {
 				System.out.println(e.getMessage());
 				System.out.println("Tente novamente...");
+				telaInicial.iniciar();
 			}
 		
-		telaGerente.mostrarOpcoes(gerente, telaInicial);
+		
 	}
 }
