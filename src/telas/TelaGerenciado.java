@@ -2,74 +2,61 @@ package telas;
 
 import java.util.Scanner;
 
+import excecoes.ChaveDuplicadaException;
 import negócios.Empresa;
-import negócios.Funcionario;
+import negócios.Gerenciado;
 
-public class TelaFuncionario {
+public class TelaGerenciado {
 	private Empresa empresa;
 	private Scanner scanner;
 	
-	public TelaFuncionario(Empresa empresa) {
+	public TelaGerenciado(Empresa empresa) {
 		scanner = new Scanner(System.in);
 		this.empresa = empresa;
 	}
 	
-	public void mostrarOpcoes(Funcionario funcionario, TelaInicial telaInicial) {
+	public void mostrarOpcoes(Gerenciado gerenciado, TelaInicial telaInicial){
 		
 		String operacao;
 		do {
-			System.err.println(">>>Olá,"+funcionario.getNome()+"!<<<");
+			System.err.println(">>>Olá,"+gerenciado.getNome()+"!<<<");
 			System.out.println("-----------Opções------------");
 			System.out.println("1. Pedir Afastamento.........");
 			System.out.println("2. Pedir Demissão............");
-			System.out.println("2. Pedir Promoção............");
 			System.out.println("S - Voltar...................");
 			operacao = scanner.nextLine();
 			switch (operacao) {
-			case "1" : pedirAfastamento(funcionario);
-			case "2" : pedirDemissao(funcionario);
-			case "3" : pedirPromoção(funcionario);
+			case "1" : pedirAfastamento(gerenciado); break;
+			case "2" : pedirDemissao(gerenciado); break;
 			case "s" :
-			case "S" : telaInicial.iniciar();
+			case "S" : telaInicial.iniciar(); break;
 			default:
 				throw new IllegalArgumentException("Valor inesperddo: " + operacao);
 			}
 		}while(operacao != "S");
 	}
 	
-	public void pedirAfastamento(Funcionario funcionario) {
+	public void pedirAfastamento(Gerenciado gerenciado) {
 		String verifica;
 		System.out.println("Confirma a solicitação? S : sim ou N: nao");
 		verifica = scanner.next();
 		if(verifica == "S") {
-			int dias;
+			int dias = 0;
 			System.out.println("Digite o número de dias:");
 			scanner.nextInt();
-			funcionario.pedirAfastamento(dias);
+			gerenciado.pedirAfastamento(dias);
 			System.out.println("Solicitação realizada.");
 		}else {
 			System.out.println("Solicitação cancelada.");
 		}
 	}
 	
-	public void pedirDemissao(Funcionario funcionario) {
+	public void pedirDemissao(Gerenciado gerenciado){
 		String verifica;
 		System.out.println("Confirma a solicitação? S : sim ou N: nao");
 		verifica = scanner.next();
 		if(verifica == "S") {
-			funcionario.pedirDemissao();
-			System.out.println("Solicitação realizada.");
-		}else {
-			System.out.println("Solicitação cancelada.");
-		}
-	}
-	
-	public void pedirPromocao(Funcionario funcionario) {
-		String verifica;
-		System.out.println("Confirma a solicitação? S : sim ou N: nao");
-		verifica = scanner.next();
-		if(verifica == "S") {
-			funcionario.pedirPromoção();
+			gerenciado.pedirDemissao();
 			System.out.println("Solicitação realizada.");
 		}else {
 			System.out.println("Solicitação cancelada.");

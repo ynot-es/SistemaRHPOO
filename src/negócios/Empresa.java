@@ -131,24 +131,28 @@ public class Empresa {
 		cRepository.trocaDeDepartamento(nome, novoDepartamento);
 	}
 	
-	void trocarGestor(String code, Gerente novoGestor) throws ElementoInexistenteException{
+	public void trocarGestor(String code, Gerente novoGestor) throws ElementoInexistenteException{
 		dRepository.trocaDeGestor(code, novoGestor);
 	}
 	
-    void promoverGerenciado(String matricula) throws ElementoInexistenteException, LimitePromocoes{
+    public void promoverGerenciado(String matricula) throws ElementoInexistenteException, LimitePromocoes{
     	fRepository.promover(matricula);
     }
     
-    void acessarCargo(String nome) throws ElementoInexistenteException {
-    	cRepository.acessar(nome);
+    public Cargo acessarCargo(String nome) throws ElementoInexistenteException {
+    	return cRepository.acessar(nome);
     }
 
-    void acessarDepartamento(String code) throws ElementoInexistenteException {
-    	dRepository.acessar(code);
+    public Departamento acessarDepartamento(String code) throws ElementoInexistenteException {
+    	return dRepository.acessar(code);
     }
 
 	public Gerente buscarGerente(String chave) throws ElementoInexistenteException {
 		return gRepository.buscarPorMatricula(chave);			
+	}
+	
+	public Gerenciado buscarGerenciado(String chave) throws ElementoInexistenteException {
+		return fRepository.buscarPorMatricula(chave);			
 	}
 	
     public void afastarGerente(String matricula) throws ElementoInexistenteException {

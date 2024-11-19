@@ -7,14 +7,17 @@ import excecoes.ChaveDuplicadaException;
 import excecoes.ElementoInexistenteException;
 import negócios.Cargo;
 import negócios.Empresa;
+import negócios.Gerente;
 
 public class TelaCadastroFuncionario {
 	private Scanner scanner;
 	private LocalDate data;
 	private Empresa empresa;
+	private Gerente gerente;
 	
-	public TelaCadastroFuncionario(Empresa empresa) {
+	public TelaCadastroFuncionario(Empresa empresa, Gerente gerente) {
 		this.empresa = empresa;
+		this.gerente = gerente;
 		scanner = new Scanner(System.in);
 		data = LocalDate.now();
 	}
@@ -29,7 +32,7 @@ public class TelaCadastroFuncionario {
 			String matricula = solicitarMatricula();
 			String titulo = solicitarTitulo();
 			try {
-				empresa.cadastrarFuncionario(nome, cpf, email, matricula, empresa.chefe().acessarCargo(titulo));
+				gerente.cadastrarFuncionario(nome, cpf, email, matricula, empresa.acessarCargo(titulo));
 				erro = false;
 				System.out.println("Feito com sucesso...");
 			}catch (ChaveDuplicadaException  | ElementoInexistenteException e) {

@@ -23,7 +23,7 @@ public class TelaCadastroCargo {
 			Double salario = solicitarSalario();
 			String codigo = solicitarCodigo();
 			try {
-				empresa.cadastrarCargo(titulo, salario, codigo);
+				empresa.cadastrarCargo(titulo, salario, null, null);
 				erro = false;
 				System.out.println("Feito com sucesso...");
 			}catch (ChaveDuplicadaException e) {

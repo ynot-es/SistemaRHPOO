@@ -16,12 +16,12 @@ public class Gerenciado extends Funcionario {
     }
 
 	@Override
-	public void pedirDemissao() throws ChaveDuplicadaException {
+	public void pedirDemissao() {
 		sRepository.adicionar(new Solicitacao(tipoSolicitacao.demissao, this, LocalDate.now(), 0));
 	}
 
 	@Override
-	public void pedirAfastamento(int dias) throws ChaveDuplicadaException {
+	public void pedirAfastamento(int dias) {
 		sRepository.adicionar(new Solicitacao(tipoSolicitacao.afastamento, this, LocalDate.now(), dias));
 	}
 }

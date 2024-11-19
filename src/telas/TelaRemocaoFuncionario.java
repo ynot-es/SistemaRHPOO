@@ -4,14 +4,17 @@ import java.util.Scanner;
 
 import excecoes.ElementoInexistenteException;
 import negócios.Empresa;
+import negócios.Gerente;
 
 public class TelaRemocaoFuncionario {
 
 		private Scanner scanner;
 		private Empresa empresa;
+		private Gerente gerente;
 		
-		public TelaRemocaoFuncionario(Empresa empresa) {
+		public TelaRemocaoFuncionario(Gerente gerente, Empresa empresa) {
 			this.empresa = empresa;
+			this.gerente = gerente;
 			scanner = new Scanner(System.in);
 		}
 		
@@ -21,7 +24,7 @@ public class TelaRemocaoFuncionario {
 				System.out.println("----Remoção de Funcionário----");
 				String matricula = solicitarMatricula();
 				try {
-					empresa.removerFuncionario(matricula);
+					gerente.demitirFuncionario(matricula);
 					erro = false;
 					System.out.println("Feito com sucesso...");
 				}catch (ElementoInexistenteException e) {

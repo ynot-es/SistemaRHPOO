@@ -3,6 +3,7 @@ package telas;
 import java.util.Scanner;
 
 import excecoes.ChaveDuplicadaException;
+import excecoes.ElementoInexistenteException;
 import negócios.Empresa;
 
 public class TelaCadastroDepartamento {
@@ -20,12 +21,15 @@ public class TelaCadastroDepartamento {
 			System.out.println("----Dados do Departamento----");
 			String nome = solicitarNome();
 			String codigo = solicitarCodigo();
-			Double orcamento = solicitarOrcamento();
+			String gerente = solicitarGerente();
 			try {
-				empresa.cadastrarCargo(nome, codigo, orcamento);
+				empresa.cadastrarDepartamento(nome, codigo, empresa.buscarGerente(gerente));
 				erro = false;
 				System.out.println("Feito com sucesso...");
 			}catch (ChaveDuplicadaException e) {
+				System.out.println(e.getMessage());erro = true;
+				System.out.println("Reiniciando...");
+			}catch (ElementoInexistenteException e) {
 				System.out.println(e.getMessage());erro = true;
 				System.out.println("Reiniciando...");
 			}
@@ -43,9 +47,9 @@ public class TelaCadastroDepartamento {
 		return scanner.next();
 	}
 	
-	public double solicitarOrcamento() {
-		System.out.println("Digite o orcamento do departamento:");
-		return scanner.nextDouble();
+	public String solicitarGerente() {
+		System.out.println("Digite a matricula do gerente: ");
+		return scanner.next();
 	}
 	
 		

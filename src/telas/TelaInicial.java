@@ -10,12 +10,14 @@ public class TelaInicial {
 		private TelaLoginGerente telaLoginGerente;
 		private TelaLoginFuncionario telaLoginFuncionario;
 		private TelaGerenteGeral telaDono;
+		private Empresa empresa;
 		
 		public TelaInicial(Empresa empresa) {
+			this.empresa = empresa;
 			scanner = new Scanner(System.in);
 			telaLoginGerente = new TelaLoginGerente(empresa);
 			telaLoginFuncionario = new TelaLoginFuncionario(empresa);
-			telaDono = new TelaDono(empresa);
+			telaDono = new TelaGerenteGeral(empresa);
 		}
 
 		public void iniciar() {
@@ -29,7 +31,7 @@ public class TelaInicial {
 				switch (operacao) {
 				case "1" : telaLoginGerente.Login(this); break;
 				case "2" : telaLoginFuncionario.Login(this); break;
-				case "3" : ; break;
+				case "3" : telaDono.mostrarOpcoes(empresa, this); break;
 				case "s" :
 				case "S": System.exit(0); break;
 				default:

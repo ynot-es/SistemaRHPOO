@@ -14,14 +14,8 @@ public class SolicitacoesRepository implements ISolicitacoesRepository{
 	private List<Solicitacao> solicitacoes = new ArrayList<>();
 	
 	@Override
-	public void adicionar(Solicitacao novaSolicitacao) throws ChaveDuplicadaException{
-		try {
-			acessar(novaSolicitacao.getSolicitante().getMatricula());
-			throw new ChaveDuplicadaException(novaSolicitacao.getSolicitante().getMatricula());
-		}
-		catch(ElementoInexistenteException e) {
-			solicitacoes.add(novaSolicitacao);
-		}
+	public void adicionar(Solicitacao novaSolicitacao){
+		solicitacoes.add(novaSolicitacao);
 	}
 
 	@Override

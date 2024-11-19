@@ -6,12 +6,13 @@ import java.util.Scanner;
 import excecoes.ElementoInexistenteException;
 import negócios.Empresa;
 import negócios.Funcionario;
+import negócios.Gerenciado;
 
 public class TelaLoginFuncionario {
 	private Empresa empresa;
 	private Scanner scanner;
-	private Funcionario funcionario;
-	private TelaFuncionario telaFuncionario;
+	private Gerenciado gerenciado;
+	private TelaGerenciado telaFuncionario;
 	
 	public TelaLoginFuncionario(Empresa empresa) {
 		scanner = new Scanner(System.in);
@@ -24,14 +25,12 @@ public class TelaLoginFuncionario {
 		String matricula;
 		matricula = scanner.next();
 		boolean erro = false;
-		do{
 			try {
-				funcionario = empresa.getGerente().buscaPorMatricula(matricula);
+				gerenciado = empresa.buscarGerenciado(matricula);
 			}catch (ElementoInexistenteException e) {
-				System.out.println(e.getMessage());erro = true;
+				System.out.println(e.getMessage());
 				System.out.println("Tente novamente...");
 			}
-		}while(erro);
-		telaFuncionario.mostrarOpcoes(funcionario, telaInicial);
+		telaFuncionario.mostrarOpcoes(gerenciado, telaInicial);
 	}
 }

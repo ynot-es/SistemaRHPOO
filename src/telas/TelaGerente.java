@@ -3,6 +3,7 @@ package telas;
 import java.util.Scanner;
 
 import negócios.Empresa;
+import negócios.Gerente;
 
 public class TelaGerente {
 	private Scanner scanner;
@@ -12,18 +13,19 @@ public class TelaGerente {
 	private TelaListarFuncionario telaListarFuncionarios;
 	private TelaCadastroCargo telaCadastroCargo;
 	private TelaCadastroDepartamento telaCadastroDepartamento;
+	private Gerente gerente;
 	
-	public TelaGerente(Empresa empresa) {
+	public TelaGerente(Gerente gerente, Empresa empresa) {
 		scanner = new Scanner(System.in);
-		telaCadastroFuncionario = new TelaCadastroFuncionario(empresa);
-		telaCadastroCargo = new TelaCadastroCargo(empresa);
-		telaCadastroDepartamento = new TelaCadastroDepartamento(empresa);
-		
+		this.gerente = gerente;
+		this.telaCadastroFuncionario = new TelaCadastroFuncionario(empresa, null);
+		this.telaCadastroCargo = new TelaCadastroCargo(empresa);
+		this.telaCadastroDepartamento = new TelaCadastroDepartamento(empresa);
 	}
 
 	public void mostrarOpcoes(Gerente gerente, TelaInicial telaInicial) {
 		String operacao = "N";
-		System.err.println(">>>Olá,"+gerente.getNome()+"!<<<");
+		System.err.println(">>>Olá," + gerente.getNome() + "!<<<");
 		while(operacao != "S") {
 			System.out.println("-----------Opções------------");
 			System.out.println("1. Cadastrar Funcionário.....");

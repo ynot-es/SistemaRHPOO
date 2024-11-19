@@ -21,7 +21,7 @@ public class TelaBuscaMatricula {
 			System.out.println("----Busca por Matrícula----");
 			String matricula = solicitarMatricula();
 			try {
-				empresa.getGerente().buscaPorMatricula();
+				empresa.buscarGerenciado(matricula);
 				erro = false;
 				System.out.println("Feito com sucesso...");
 			}catch (ElementoInexistenteException e) {

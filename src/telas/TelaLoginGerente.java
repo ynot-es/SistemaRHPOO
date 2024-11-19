@@ -2,7 +2,9 @@ package telas;
 
 import java.util.Scanner;
 
+import excecoes.ElementoInexistenteException;
 import negócios.Empresa;
+import negócios.Gerente;
 
 public class TelaLoginGerente {
 
@@ -16,19 +18,18 @@ public class TelaLoginGerente {
 	}
 
 	public void Login(TelaInicial telaInicial) {
-			
-		System.out.println("-----Digite sua Matrícula-----");
-		String matricula;
-		matricula = scanner.next();
-		boolean erro = false;
-		do{
+			System.out.println("-----Digite sua Matrícula-----");
+			String matricula;
+			matricula = scanner.next();
+			Gerente gerente = null;
+		
 			try {
-				gerente = empresa.buscaPorMatricula(matricula);
+				gerente = empresa.buscarGerente(matricula);
 			}catch (ElementoInexistenteException e) {
-				System.out.println(e.getMessage());erro = true;
+				System.out.println(e.getMessage());
 				System.out.println("Tente novamente...");
 			}
-		}while(erro);
-			TelaGerente.mostrarOpcoes(gerente, telaInicial);
-		}
+		
+		telaGerente.mostrarOpcoes(gerente, telaInicial);
+	}
 }

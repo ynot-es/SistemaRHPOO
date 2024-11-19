@@ -14,7 +14,6 @@ public abstract class Funcionario extends Pessoa{
 	private String matricula;
     private Cargo cargo;
     private LocalDate dataAdmissao;
-    private ISolicitacoesRepository sRepository;
 
 	private StatusFuncionario status; // ativo, férias, afastado
     

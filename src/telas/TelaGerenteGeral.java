@@ -1,11 +1,15 @@
 package telas;
 
+import java.util.List;
 import java.util.Scanner;
 
 import excecoes.ChaveDuplicadaException;
 import excecoes.ElementoInexistenteException;
+import negócios.Cargo;
+import negócios.Departamento;
 import negócios.Empresa;
 import negócios.Funcionario;
+import negócios.Gerente;
 
 public class TelaGerenteGeral {
 	private Empresa empresa;
@@ -16,9 +20,9 @@ public class TelaGerenteGeral {
 		this.empresa = empresa;
 	}
 	
-	public void mostrarOpcoes(GerenteGeral gerente, TelaInicial telaInicial) {
+	public void mostrarOpcoes(Empresa gerenteGeral, TelaInicial telaInicial) {
 		String operacao = "N";
-		System.err.println(">>>Olá,"+gerente.getNome()+"!<<<");
+		System.err.println(">>>"+gerenteGeral.getNome()+"<<<");
 		while(operacao != "S") {
 			System.out.println("-----------Opções------------");
 			System.out.println("1. Cadastrar Cargo...........");
@@ -33,120 +37,150 @@ public class TelaGerenteGeral {
 			System.out.println("S - Voltar...................");
 			operacao = scanner.nextLine();
 			switch (operacao) {
-			case "1" : cadastrarCargo();
-			case "2" : removerCargo();
-			case "3" : listarCargo();
-			case "4" : cadastrarDepartamento();
-			case "5" : removerDepartamento();
-			case "6" : listarDepartamemto();
-			case "7" : cadastrarGerente();
-			case "8" : removerGerente();
-			case "9" : listarGerente();
+			case "1" : cadastrarCargo(); break;
+			case "2" : removerCargo(); break;
+			case "3" : listarCargos(); break;
+			case "4" : criarDepartamento(); break;
+			case "5" : removerDepartamento(); break;
+			case "6" : listarDepartamentos(); break;
+			case "7" : cadastrarGerente(); break;
+			case "8" : removerGerente(); break;
+			case "9" : listarGerentes(); break;
 			case "s": 
-			case "S": telaInicial.iniciar();
+			case "S": telaInicial.iniciar(); break;
 			default:
 				throw new IllegalArgumentException("Valor inesperado: " + operacao);
 			}
 		}
 	}
 
-	public void cadastrarCargo() {
-		boolean erro = false;
-		do {
-			System.out.println("----Cadastro de Cargo----");
-			System.out.println("Digite o título:");
-			String titulo = scanner.next();
-			System.out.println("Digite o salário:");
-			double salario = scanner.nextDouble();
-			System.out.println("Digite o código:");
-			String codigo = scanner.next();
-			try {
-				//funcao de cadastrar o cargo
-				erro = false;
-				System.out.println("Feito com sucesso...");
-			}catch (ChaveDuplicadaException  | ElementoInexistenteException e) {
-				System.out.println("Chave duplicada ou Cargo Inexistente.");erro = true;
-				System.out.println("Reiniciando...");
-			}
-		}while(erro);
-	}
-	
-	private void removerCargo() {
-		boolean erro = false;
-		do {
-			System.out.println("----Remoção de Cargo----");
-			System.out.println("Digite o título:");
-			String titulo = scanner.next();
-			try {
-				//funcao de remover o cargo
-				erro = false;
-				System.out.println("Feito com sucesso...");
-			}catch (ElementoInexistenteException e) {
-				System.out.println("Cargo Inexistente.");erro = true;
-				System.out.println("Reiniciando...");
-			}
-		}while(erro);	
-	}
-	
-	private void listarCargo() {
-		boolean erro = false;
-			System.out.println("----Listagem de Cargos----");
-			cargo = empresa.getCargos();
-    		for (Funcionario cargosEmpresa : cargo) {
-    			System.out.println(cargo.toString());
-            }
-	}
-	
-}
-
-public void cadastrarDepartamento() {
-	boolean erro = false;
-	do {
-		System.out.println("----Cadastro de Departamento----");
-		System.out.println("Digite o código:");
+	private void cadastrarCargo() {
+		System.out.println("----Cadastro de Cargo----");
+		System.out.println("Digite o título:");
 		String titulo = scanner.next();
 		System.out.println("Digite o salário:");
 		double salario = scanner.nextDouble();
-		System.out.println("Digite o código:");
-		String codigo = scanner.next();
+		System.out.println("Digite o departamento onde ele atua:");
+		String departamento = scanner.next();
+		System.out.println("Digite o cargo superior a ele (se houver)");
+		String nomeCargo = scanner.next();
 		try {
-			//funcao de cadastrar o cargo
-			erro = false;
-			System.out.println("Feito com sucesso...");
-		}catch (ChaveDuplicadaException  | ElementoInexistenteException e) {
-			System.out.println("Chave duplicada ou Cargo Inexistente.");erro = true;
-			System.out.println("Reiniciando...");
+			Cargo cargo = empresa.acessarCargo(nomeCargo);
+			try {
+				empresa.cadastrarCargo(titulo, salario, empresa.acessarDepartamento(departamento), cargo);
+				System.out.println("Feito com sucesso...");
+			}catch (ChaveDuplicadaException  | ElementoInexistenteException e) {
+				System.out.println("Chave duplicada ou Cargo Inexistente.");
+				System.out.println("Reiniciando...");
+			}
+		}catch (ElementoInexistenteException e) {
+			try {
+				empresa.cadastrarCargo(titulo, salario, empresa.acessarDepartamento(departamento), null);
+				System.out.println("Feito com sucesso...");
+			}catch (ChaveDuplicadaException  | ElementoInexistenteException er) {
+				System.out.println("Chave duplicada ou Cargo Inexistente.");
+				System.out.println("Reiniciando...");
+			}
 		}
-	}while(erro);
-}
-
-private void removerCargo() {
-	boolean erro = false;
-	do {
+	}
+	
+	private void removerCargo() {
 		System.out.println("----Remoção de Cargo----");
 		System.out.println("Digite o título:");
 		String titulo = scanner.next();
 		try {
-			//funcao de remover o cargo
-			erro = false;
+			empresa.removerCargo(titulo);
 			System.out.println("Feito com sucesso...");
 		}catch (ElementoInexistenteException e) {
-			System.out.println("Cargo Inexistente.");erro = true;
+			System.out.println("Cargo Inexistente.");
 			System.out.println("Reiniciando...");
 		}
-	}while(erro);	
-}
-
-private void listarCargo() {
-	boolean erro = false;
+	}
+	
+	private void listarCargos() {
 		System.out.println("----Listagem de Cargos----");
-		cargo = empresa.getCargos();
-		for (Funcionario cargosEmpresa : cargo) {
-			System.out.println(cargo.toString());
+		List<Cargo> cargos = empresa.getCargos();
+		for (Cargo cargoEmpresa : cargos) {
+			System.out.println(cargoEmpresa.toString());
         }
+	}
+	
+	private void criarDepartamento() {
+		System.out.println("----Cadastro de Departamento----");
+		System.out.println("Digite o nome:");
+		String nome = scanner.next();
+		System.out.println("Digite o codigo:");
+		String codigo = scanner.next();
+		System.out.println("Digite a matricula do gerente:");
+		String gerente = scanner.next();
+		try {
+			empresa.cadastrarDepartamento(nome, codigo, empresa.buscarGerente(gerente));
+			System.out.println("Feito com sucesso...");
+		}catch (ChaveDuplicadaException  | ElementoInexistenteException e) {
+			System.out.println("Chave duplicada ou Cargo Inexistente.");
+			System.out.println("Reiniciando...");
+		}
+	}
+	private void removerDepartamento() {
+		System.out.println("----Remoção de Departamentos----");
+		System.out.println("Digite o título:");
+		String code = scanner.next();
+		try {
+			empresa.removerDepartamento(code);
+			System.out.println("Feito com sucesso...");
+		}catch (ElementoInexistenteException e) {
+			System.out.println("Cargo Inexistente.");
+			System.out.println("Reiniciando...");
+		}
+	}
+	private void listarDepartamentos() {
+		System.out.println("----Listagem de Departamentos----");
+		List<Departamento> departamentos = empresa.getDepartamentos();
+		for (Departamento departamentoAtual : departamentos) {
+			System.out.println(departamentoAtual.toString());
+		}
+	}
+	
+	private void cadastrarGerente() {
+		System.out.println("----Cadastro de Gerente----");
+		System.out.println("Digite o nome:");
+		String nome = scanner.next();
+		System.out.println("Digite o cpf:");
+		String cpf = scanner.next();
+		System.out.println("Digite o email:");
+		String email = scanner.next();
+		System.out.println("Digite a matricula:");
+		String matricula = scanner.next();
+		try {
+			empresa.cadastrarGerente(nome, cpf, email, matricula, null);
+			System.out.println("Feito com sucesso...");
+		}catch (ChaveDuplicadaException e) {
+			System.out.println("Chave duplicada ou Cargo Inexistente.");
+		}
+	}
+	private void removerGerente() {
+		System.out.println("----Remoção de Gerente----");
+		System.out.println("Digite o título:");
+		String matricula = scanner.next();
+		try {
+			empresa.demitirGerente(matricula);
+			System.out.println("Feito com sucesso...");
+		}catch (ElementoInexistenteException e) {
+			System.out.println("Cargo Inexistente.");
+			System.out.println("Reiniciando...");
+		}
+	}
+	private void listarGerentes() {
+		System.out.println("----Listagem de Gerentes----");
+		List<Gerente> gerentes = empresa.getGerentes();
+		for (Gerente gerenteAtual : gerentes) {
+			System.out.println(gerenteAtual.toString());
+		}
+	}
 }
 
-}
+
+
 
 
 
