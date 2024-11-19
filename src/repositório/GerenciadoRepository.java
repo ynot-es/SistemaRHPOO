@@ -32,8 +32,8 @@ public class GerenciadoRepository implements IGerenciadoRepository{
 	@Override
 	public void promover(String matricula) throws ElementoInexistenteException, LimitePromocoes{
 		Gerenciado usuario = buscarPorMatricula(matricula);
-    	if(usuario.getCargo().getPai() != null) {
-	        usuario.setCargo(usuario.getCargo().getPai());
+    	if(usuario.getCargo().getSuperior() != null) {
+	        usuario.setCargo(usuario.getCargo().getSuperior());
     	}
     	else {
     		throw new LimitePromocoes(usuario.getCargo().getTitulo());

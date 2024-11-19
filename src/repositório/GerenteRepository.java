@@ -29,20 +29,8 @@ public class GerenteRepository implements IGerenteRepository{
 	}
 
 	@Override
-	public void promover(String matricula) throws ElementoInexistenteException, LimitePromocoes{
-		Gerente usuario = buscarPorMatricula(matricula);
-    	if(usuario.getCargo().getPai() != null) {
-	        usuario.setCargo(usuario.getCargo().getPai());
-    	}
-    	else {
-    		throw new LimitePromocoes(usuario.getCargo().getTitulo());
-    	}
-	}
-
-	@Override
 	public Gerente buscarPorMatricula(String matricula) throws ElementoInexistenteException{
 		 for (Gerente usuario : gerentes) {
-			 System.out.println(usuario.getMatricula() + " x " + matricula);
 			 if (usuario.getMatricula().equals(matricula)) {
                 return usuario;
 			 }
@@ -50,17 +38,6 @@ public class GerenteRepository implements IGerenteRepository{
 		 throw new ElementoInexistenteException();
 	}
 	
-	@Override
-	public List<Gerente> buscarPorDepartamento(String code) throws ElementoInexistenteException{
-		List<Gerente> gerentesPD = new ArrayList<>();
-		for (Gerente usuario : gerentes) {
-            if (usuario.getCargo().getDepartamento().getCodigo().equals(code)){
-                gerentesPD.add(usuario);
-            }
-        }
-		throw new ElementoInexistenteException();
-	}
-
 	@Override
 	public List<Gerente> getGerentes() {
 		return gerentes;

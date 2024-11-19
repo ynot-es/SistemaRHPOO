@@ -3,6 +3,7 @@ package negócios;
 import java.time.LocalDate;
 
 import excecoes.ChaveDuplicadaException;
+import repositório.ISolicitacoesRepository;
 
 public abstract class Funcionario extends Pessoa{
 
@@ -13,6 +14,7 @@ public abstract class Funcionario extends Pessoa{
 	private String matricula;
     private Cargo cargo;
     private LocalDate dataAdmissao;
+    private ISolicitacoesRepository sRepository;
 
 	private StatusFuncionario status; // ativo, férias, afastado
     
