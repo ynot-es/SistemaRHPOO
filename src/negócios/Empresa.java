@@ -116,7 +116,7 @@ public class Empresa {
 	}
 	
 	public void demitirGerente(String matricula) throws ElementoInexistenteException{
-		fRepository.remover(matricula);
+		gRepository.remover(matricula);
 	}
 	
 	public void removerDepartamento(String code) throws ElementoInexistenteException{

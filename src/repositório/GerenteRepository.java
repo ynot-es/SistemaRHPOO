@@ -30,12 +30,12 @@ public class GerenteRepository implements IGerenteRepository{
 
 	@Override
 	public Gerente buscarPorMatricula(String matricula) throws ElementoInexistenteException{
-		 for (Gerente usuario : gerentes) {
-			 if (usuario.getMatricula().equals(matricula)) {
-                return usuario;
-			 }
-		 }
-		 throw new ElementoInexistenteException();
+		for (Gerente usuario : gerentes) {
+			if (usuario.getMatricula().equals(matricula)) {
+				return usuario;
+			}
+		}
+		throw new ElementoInexistenteException();
 	}
 	
 	@Override

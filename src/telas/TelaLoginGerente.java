@@ -21,9 +21,9 @@ public class TelaLoginGerente {
 			System.out.println("-----Digite sua Matrícula-----");
 			String matricula;
 			matricula = scanner.nextLine();
-			Gerente gerente = null;
 			try {
-				gerente = empresa.buscarGerente(matricula);
+				Gerente gerente = empresa.buscarGerente(matricula);
+				telaGerente = new TelaGerente(gerente, empresa, scanner);
 				telaGerente.mostrarOpcoes(gerente, telaInicial);
 			}catch (ElementoInexistenteException e) {
 				System.out.println(e.getMessage());

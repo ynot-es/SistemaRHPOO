@@ -5,6 +5,11 @@ public class Departamento {
 	private String codigo;
 	private Gerente gerente;
 	
+	@Override
+	public String toString() {
+		return "Departamento [nome=" + nome + ", codigo=" + codigo + ", gerente=" + gerente + "]";
+	}
+
 	public Departamento(String nome, String codigo, Gerente gerente) {
 		this.nome = nome;
 		this.codigo = codigo;

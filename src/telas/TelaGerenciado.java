@@ -39,11 +39,12 @@ public class TelaGerenciado {
 	public void pedirAfastamento(Gerenciado gerenciado) {
 		String verifica;
 		System.out.println("Confirma a solicitação? S : sim ou N: nao");
-		verifica = scanner.next();
-		if(verifica == "S") {
+		verifica = scanner.nextLine();
+		if(verifica.equals("S")) {
 			int dias = 0;
 			System.out.println("Digite o número de dias:");
 			scanner.nextInt();
+			scanner.nextLine(); 
 			gerenciado.pedirAfastamento(dias);
 			System.out.println("Solicitação realizada.");
 		}else {
@@ -54,8 +55,8 @@ public class TelaGerenciado {
 	public void pedirDemissao(Gerenciado gerenciado){
 		String verifica;
 		System.out.println("Confirma a solicitação? S : sim ou N: nao");
-		verifica = scanner.next();
-		if(verifica == "S") {
+		verifica = scanner.nextLine();
+		if(verifica.equals("S")) {
 			gerenciado.pedirDemissao();
 			System.out.println("Solicitação realizada.");
 		}else {

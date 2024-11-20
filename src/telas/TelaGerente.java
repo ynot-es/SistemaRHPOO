@@ -18,9 +18,11 @@ public class TelaGerente {
 	public TelaGerente(Gerente gerente, Empresa empresa, Scanner scanner) {
 		this.scanner = scanner;
 		this.gerente = gerente;
-		this.telaCadastroFuncionario = new TelaCadastroFuncionario(empresa, null, scanner);
+		this.telaCadastroFuncionario = new TelaCadastroFuncionario(empresa, gerente, scanner);
 		this.telaCadastroCargo = new TelaCadastroCargo(empresa);
+		this.telaRemocaoFuncionario = new TelaRemocaoFuncionario(gerente, empresa);
 		this.telaCadastroDepartamento = new TelaCadastroDepartamento(empresa);
+		this.telaBuscaMatricula = new TelaBuscaMatricula(empresa);
 	}
 
 	public void mostrarOpcoes(Gerente gerente, TelaInicial telaInicial) {
@@ -28,10 +30,10 @@ public class TelaGerente {
 		System.err.println(">>>Olá," + gerente.getNome() + "!<<<");
 		while(operacao != "S") {
 			System.out.println("-----------Opções------------");
-			System.out.println("1. Cadastrar Funcionário.....");
-			System.out.println("2. Remover Funcionário.......");
-			System.out.println("3. Busca por Matrícula.......");
-			System.out.println("S - Voltar...................");
+			System.out.println("1. Cadastrar Funcionário..................");
+			System.out.println("2. Remover Funcionário....................");
+			System.out.println("3. Buscar funcionario por Matrícula.......");
+			System.out.println("S - Voltar................................");
 			operacao = scanner.nextLine();
 			switch (operacao) {
 			case "1" : telaCadastroFuncionario.solicitarDados(); break;

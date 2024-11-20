@@ -60,6 +60,7 @@ public class TelaGerenteGeral {
 		String titulo = scanner.nextLine();
 		System.out.println("Digite o salário:");
 		double salario = scanner.nextDouble();
+		scanner.nextLine(); 
 		System.out.println("Digite o departamento onde ele atua:");
 		String departamento = scanner.nextLine();
 		System.out.println("Digite o cargo superior a ele (se houver)");
@@ -160,7 +161,7 @@ public class TelaGerenteGeral {
 	}
 	private void removerGerente() {
 		System.out.println("----Remoção de Gerente----");
-		System.out.println("Digite o título:");
+		System.out.println("Digite a matricula:");
 		String matricula = scanner.nextLine();
 		try {
 			empresa.demitirGerente(matricula);
